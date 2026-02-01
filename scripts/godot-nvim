@@ -1,0 +1,8 @@
+#!/bin/sh
+SOCKET="/tmp/godot.pipe"
+FILE="$1"
+LINE="$2"
+COL="$3"
+
+# Steam runs in sandbox, use flatpak-spawn to access host
+flatpak-spawn --host env NVIM_APPNAME=my-own-nvim /usr/bin/nvim --server "$SOCKET" --remote-send "<C-\><C-N>:e $FILE<CR>:call cursor($LINE,$COL)<CR>"
