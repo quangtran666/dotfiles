@@ -25,8 +25,19 @@ for item in "${SYNC_ITEMS[@]}"; do
     source="${item%%:*}"
     dest="$DOTFILES_DIR/${item##*:}"
 
-    echo "Syncing: $source -> $dest"
+    echo "Syncing folder: $source -> $dest"
     rsync -av --delete $EXCLUDE_FLAGS "$source/" "$dest/"
+done
+
+# Sync single files
+for item in "${SYNC_FILES[@]}"; do
+    source="${item%%:*}"
+    dest="$DOTFILES_DIR/${item##*:}"
+
+    # Create dest directory if not exists
+    mkdir -p "$(dirname "$dest")"
+    echo "Syncing file: $source -> $dest"
+    cp "$source" "$dest"
 done
 
 cd "$DOTFILES_DIR"
