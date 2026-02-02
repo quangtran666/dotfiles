@@ -3,15 +3,23 @@ local function enable_transparency()
 end
 
 return {
+    -- {
+    --     "folke/tokyonight.nvim",
+    --     opts = {
+    --         style = "night",
+    --         day_brightness = 0.2,
+    --     },
+    --     config = function(_, opts)
+    --         require("tokyonight").setup(opts)
+    --         vim.cmd.colorscheme("tokyonight")
+    --     end,
+    -- },
     {
-        "folke/tokyonight.nvim",
-        opts = {
-            style = "night",
-            day_brightness = 0.2,
-        },
+        "EdenEast/nightfox.nvim",
+        opts = {},
         config = function(_, opts)
-            require("tokyonight").setup(opts)
-            vim.cmd.colorscheme("tokyonight")
+            require("nightfox").setup(opts)
+            vim.cmd.colorscheme("dayfox")
         end,
     },
     {
@@ -21,7 +29,7 @@ return {
         },
         opts = {
             options = {
-                theme = "tokyonight",
+                theme = "dayfox",
             },
             sections = {
                 lualine_x = {

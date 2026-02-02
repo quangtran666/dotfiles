@@ -1,6 +1,9 @@
 return {
     "saghen/blink.cmp",
     version = "1.*",
+    dependencies = {
+        { "saghen/blink.compat", version = "2.*", lazy = true, opts = {} },
+    },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
@@ -17,12 +20,17 @@ return {
             },
         },
         sources = {
-            default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+            default = { "lazydev", "lsp", "path", "snippets", "buffer", "laravel" },
             providers = {
                 lazydev = {
                     name = "LazyDev",
                     module = "lazydev.integrations.blink",
                     score_offset = 100,
+                },
+                laravel = {
+                    name = "Laravel",
+                    module = "blink.compat.source",
+                    score_offset = 95,
                 },
             },
         },

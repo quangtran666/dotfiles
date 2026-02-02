@@ -2,8 +2,14 @@
 
 DOTFILES_DIR="$HOME/dotfiles"
 
+# Folders to sync
 SYNC_ITEMS=(
     "$HOME/.config/my-own-nvim:nvim"
+)
+
+# Single files to sync (source:dest)
+SYNC_FILES=(
+    "$HOME/.tmux.conf:tmux/.tmux.conf"
 )
 
 EXCLUDES=(

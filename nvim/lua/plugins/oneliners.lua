@@ -1,11 +1,24 @@
 return {
     {
-	"folke/lazydev.nvim",
-	ft = "lua",
-	opts = {
-	    library = {
-		{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-	    },
-	},
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
+    },
+    {
+        "sphamba/smear-cursor.nvim",
+        opts = {
+            stiffness = 0.8,
+            trailing_stiffness = 0.6,
+            stiffness_insert_mode = 0.7,
+            trailing_stiffness_insert_mode = 0.7,
+            damping = 0.95,
+            damping_insert_mode = 0.95,
+            distance_stop_animating = 0.5,
+            smear_insert_mode = true,
+        },
     },
 }
