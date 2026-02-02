@@ -1,0 +1,33 @@
+#!/bin/bash
+
+DOTFILES_DIR="$HOME/dotfiles"
+
+SYNC_ITEMS=(
+    "$HOME/.config/my-own-nvim:nvim"
+)
+
+EXCLUDES=(
+    ".git"
+)
+
+EXCLUDE_FLAGS=""
+for item in "${EXCLUDES[@]}"; do
+    EXCLUDE_FLAGS="$EXCLUDE_FLAGS --exclude=$item"
+done
+
+for item in "${SYNC_ITEMS[@]}"; do
+    source="${item%%:*}"
+    dest="$DOTFILES_DIR/${item##*:}"
+
+    echo "Syncing: $source -> $dest"
+    rsync -av --delete $EXCLUDE_FLAGS "$source/" "$dest/"
+done
+
+cd "$DOTFILES_DIR"
+if [[ -n $(git status --porcelain) ]]; then
+    git add .
+    git commit -m "sync: $(date '+%Y-%m-%d %H:%M')"
+    echo "Committed!"
+else
+    echo "Nothing to commit."
+fi
