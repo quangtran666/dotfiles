@@ -13,11 +13,6 @@ return {
         },
         completion = {
             documentation = { auto_show = false },
-            menu = {
-                auto_show = function(ctx)
-                    return ctx.mode ~= "default"
-                end,
-            },
         },
         sources = {
             default = { "lazydev", "lsp", "path", "snippets", "buffer", "laravel" },
